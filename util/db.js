@@ -2,14 +2,12 @@ require('dotenv').config({ path: './config/global.env' });
 const path = require('path');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const { logError, logInfo } = require('./logger');
-const { version, options } = require('pdfkit');
-const { strict } = require('assert');
-const { HOST, USER, DATABSENAME, PASSWORD } = process.env;
+
 const mongoose = require('mongoose');
 
 
 
-const MONGODB_URI = 'mongodb+srv://ajay8182831490:Ajay%4016052003@blogapi.dstwlyr.mongodb.net/?retryWrites=true&w=majority';
+
 const mongooseOptions = {
 
   useNewUrlParser: true,
@@ -25,7 +23,7 @@ const getPool = async () => {
 
   let pool = null;
   try {
-    pool = await mongoose.connect(MONGODB_URI, mongooseOptions);
+    pool = await mongoose.connect(process.env.MONGODB_URI, mongooseOptions);
 
 
   } catch (ex) {

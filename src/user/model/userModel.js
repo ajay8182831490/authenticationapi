@@ -107,7 +107,7 @@ class User {
 
 
 
-            let token = await jwt.sign(data, secretKey);
+            let token = await jwt.sign(data, process.env.JWT_SECRET_KEY);
 
             return { token, result };;
 
@@ -229,7 +229,7 @@ class User {
 
 
             let result = await userSchema.findOne({ email: email })
-            console.log(result);
+
             if (result) {
                 let otp = generateOTP();
                 let otpemail = await sendEmailforOtp(email, otp);
